@@ -1,0 +1,23 @@
+{
+  "name": "kanna",
+  "version": "1.0.0",
+  "description": "A based tool for based people. Test",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bobbinson/Kanna.git"
+  },
+  "author": "Bobbinson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Bobbinson/Kanna/issues"
+  },
+  "homepage": "https://github.com/Bobbinson/Kanna#readme",
+  "devDependencies": {
+    "electron": "^35.0.0"
+  }
+}
