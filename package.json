@@ -19,5 +19,8 @@
   "homepage": "https://github.com/Bobbinson/Kanna#readme",
   "devDependencies": {
     "electron": "^35.0.0"
+  },
+  "dependencies": {
+    "kanna": "file:"
   }
 }
