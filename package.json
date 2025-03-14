@@ -2,10 +2,40 @@
   "name": "kanna",
   "version": "1.0.0",
   "description": "A based tool for based people. Test",
-  "main": "main.js",
+  "main": "src/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron ."
+    "start": "electron .",
+    "postinstall": "electron-builder install-app-deps",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "productName": "Kanna",
+    "appId": "nyatsumii|electron.kanna",
+    "directories": {
+      "buildResources": "resources"
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "msi"
+      ],
+      "icon": "./README_icon.jpg"
+    },
+    "linux": {
+      "target": [
+        "deb",
+        "rpm",
+        "snap",
+        "AppImage"
+      ]
+    }
+  },
+  "devDependencies": {
+    "@electron/fuses": "^1.8.0",
+    "electron": "^35.0.0",
+    "electron-builder": "^25.1.8"
   },
   "repository": {
     "type": "git",
@@ -17,10 +47,9 @@
     "url": "https://github.com/Bobbinson/Kanna/issues"
   },
   "homepage": "https://github.com/Bobbinson/Kanna#readme",
-  "devDependencies": {
-    "electron": "^35.0.0"
-  },
   "dependencies": {
+    "danbooru": "^3.1.0",
+    "electron-squirrel-startup": "^1.0.1",
     "kanna": "file:"
   }
 }

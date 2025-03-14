@@ -1,5 +1,7 @@
 # Kanna
 
-A based tool for based people. Test
+Ravioli, ravioli...
+
+Booru viewer and downloader. Organize your art into folders.
 
 ![KANNA](README_icon.jpg)
