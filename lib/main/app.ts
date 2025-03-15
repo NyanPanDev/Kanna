@@ -12,7 +12,7 @@ export function createAppWindow(): void {
     icon: appIcon,
     frame: false,
     titleBarStyle: 'hiddenInset',
-    title: 'Electron React App',
+    title: 'Kanna',
     maximizable: false,
     resizable: false,
     webPreferences: {
