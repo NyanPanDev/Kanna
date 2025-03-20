@@ -1,4 +1,4 @@
-appId: com.nyanpandev.kanna
+appId: com.NyanPanDev.kanna
 productName: Kanna
 directories:
   buildResources: resources/build
