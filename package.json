@@ -6,11 +6,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Bobbinson/Kanna"
+    "url": "https://github.com/nyanpandev/Kanna"
   },
   "author": {
-    "name": "Bobbinson",
-    "url": "https://github.com/Bobbinson"
+    "name": "NyanPanDev",
+    "url": "https://github.com/nyanpandev"
   },
   "scripts": {
     "dev": "electron-vite dev -w",

@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './components/App'
-import appIcon from '@/resources/build/icon.png'
+import appIcon from '@/resources/build/kanna.png'
 import { WindowContextProvider, menuItems } from '@/lib/window'
 import '@/lib/window/window.css'
 
