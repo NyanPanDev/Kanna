@@ -5,3 +5,4 @@ out
 *.log*
 temp
 DEV_NOTES.md
+.flowbite-react

@@ -41,21 +41,10 @@ export default function WelcomeKit() {
 
   return (
     <div className="welcome-content">
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={'content-' + activePath}
-          style={{ zIndex: 2, flex: 1 }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{
-            duration: 0.2,
-            ease: 'easeInOut',
-          }}
-        >
-          {content()}
-        </motion.div>
-      </AnimatePresence>
+      
+          TypescriptContent
+        
+      
       <EraShape onPathHover={handlePathHover} onPathReset={handlePathReset} />
     </div>
   )
