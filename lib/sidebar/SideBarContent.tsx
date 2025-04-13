@@ -8,17 +8,25 @@ import { useState } from "react";
 
 const SideBarContent = () => {
 
-  const [openModal, setOpenModal] = useState(true);
+  let itemArray = [];
+
+  function handleClickForm () {
+    setOpenModal(false)
+    addToDropdown()
+  };
+
+  function addToDropdown () {
+
+  };
+
+  const [openModal, setOpenModal] = useState(false);
     return (
-      <Sidebar aria-label="Sidebar with multi-level dropdown example">
+      <Sidebar>
       <SidebarItems>
         <SidebarItemGroup>
           <SidebarItem>
-            <Dropdown label="Dropdown">
+            <Dropdown id="websites-list" label="Servers">
             <DropdownItem onClick={() => alert("Dashboard!")}>Dashboard</DropdownItem>
-            <DropdownItem onClick={() => alert("Settings!")}>Settings</DropdownItem>
-            <DropdownItem onClick={() => alert("Earnings!")}>Earnings</DropdownItem>
-            <DropdownItem onClick={() => alert("Sign out!")}>Sign out</DropdownItem>
             </Dropdown>
           </SidebarItem>
           <SidebarItem>
@@ -27,17 +35,22 @@ const SideBarContent = () => {
               <ModalHeader>Add Server</ModalHeader>
               <ModalBody>
                 <div className="space-y-6">
-                <TextInput id="url" type="url" required />
+                  <div className="m2-block">
+                    <TextInput id="url" type="url" required />
+                  </div>
+                  <div className="m2-block">
+                    <Button className="button" onClick={() => document.querySelector('#url input[type="text"]')}>Verify Link</Button>
+                  </div>
                 </div>
               </ModalBody>
               <ModalFooter>
-                <Button onClick={() => setOpenModal(false)}>Save</Button>
+                <Button className="button" onClick={() => handleClickForm()}>Save</Button>
               </ModalFooter>
             </Modal>
           </SidebarItem>
         </SidebarItemGroup>
       </SidebarItems>
-    </Sidebar>
+      </Sidebar>
     )
 }
 
