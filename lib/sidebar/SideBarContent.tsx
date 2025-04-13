@@ -1,7 +1,7 @@
-import { Sidebar, SidebarCollapse, SidebarItem, SidebarItemGroup, SidebarItems } from "flowbite-react";
-import { HiArrowSmRight, HiChartPie, HiInbox, HiShoppingBag, HiTable, HiUser, HiViewBoards } from "react-icons/hi";
-import React from 'react'
+import { Button, createTheme, Dropdown, DropdownItem, Sidebar, SidebarCollapse, SidebarItem, SidebarItemGroup, SidebarItems, ThemeProvider } from "flowbite-react";
+import { FiPlusCircle } from "react-icons/fi";
 import './SideBar.css';
+import { Popup } from "../popup/Popup";
 
 
 const SideBarContent = () => {
@@ -9,29 +9,16 @@ const SideBarContent = () => {
       <Sidebar aria-label="Sidebar with multi-level dropdown example">
       <SidebarItems>
         <SidebarItemGroup>
-          <SidebarItem href="#" icon={HiChartPie}>
-            Dashboard
+          <SidebarItem>
+            <Dropdown label="Dropdown">
+            <DropdownItem onClick={() => alert("Dashboard!")}>Dashboard</DropdownItem>
+            <DropdownItem onClick={() => alert("Settings!")}>Settings</DropdownItem>
+            <DropdownItem onClick={() => alert("Earnings!")}>Earnings</DropdownItem>
+            <DropdownItem onClick={() => alert("Sign out!")}>Sign out</DropdownItem>
+            </Dropdown>
           </SidebarItem>
-          <SidebarCollapse icon={HiShoppingBag} label="E-commerce">
-            <SidebarItem href="#">Products</SidebarItem>
-            <SidebarItem href="#">Sales</SidebarItem>
-            <SidebarItem href="#">Refunds</SidebarItem>
-            <SidebarItem href="#">Shipping</SidebarItem>
-          </SidebarCollapse>
-          <SidebarItem href="#" icon={HiInbox}>
-            Inbox
-          </SidebarItem>
-          <SidebarItem href="#" icon={HiUser}>
-            Users
-          </SidebarItem>
-          <SidebarItem href="#" icon={HiShoppingBag}>
-            Products
-          </SidebarItem>
-          <SidebarItem href="#" icon={HiArrowSmRight}>
-            Sign In
-          </SidebarItem>
-          <SidebarItem href="#" icon={HiTable}>
-            Sign Up
+          <SidebarItem>
+            <Button className="button" onClick={() => alert("OUCH!")}><FiPlusCircle /></Button>
           </SidebarItem>
         </SidebarItemGroup>
       </SidebarItems>
