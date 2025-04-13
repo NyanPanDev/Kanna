@@ -1,22 +1,21 @@
 "use client";
 
-import { Button, Dropdown, DropdownItem, Label, Modal, ModalBody, ModalFooter, ModalHeader, Sidebar, SidebarItem, SidebarItemGroup, SidebarItems, TextInput } from "flowbite-react";
+import { Button, Dropdown, DropdownItem, DropdownProps, Label, Modal, ModalBody, ModalFooter, ModalHeader, Sidebar, SidebarItem, SidebarItemGroup, SidebarItems, TextInput } from "flowbite-react";
 import { FiPlusCircle } from "react-icons/fi";
 import './SideBar.css';
-import { useState } from "react";
+import { JSX, ReactElement, ReactNode, useState } from "react";
 
-
+let itemArray : any[] = [];
 const SideBarContent = () => {
 
-  let itemArray = [];
 
-  function handleClickForm () {
+  function handleClickForm (Item) {
+    addToDropdown(Item)
     setOpenModal(false)
-    addToDropdown()
   };
 
-  function addToDropdown () {
-
+  function addToDropdown (Item) {
+    itemArray.push(Item)
   };
 
   const [openModal, setOpenModal] = useState(false);
@@ -26,7 +25,7 @@ const SideBarContent = () => {
         <SidebarItemGroup>
           <SidebarItem>
             <Dropdown id="websites-list" label="Servers">
-            <DropdownItem onClick={() => alert("Dashboard!")}>Dashboard</DropdownItem>
+            {itemArray}
             </Dropdown>
           </SidebarItem>
           <SidebarItem>
@@ -44,7 +43,7 @@ const SideBarContent = () => {
                 </div>
               </ModalBody>
               <ModalFooter>
-                <Button className="button" onClick={() => handleClickForm()}>Save</Button>
+                <Button className="button" onClick={() => handleClickForm(<DropdownItem onClick={() => alert("Dashboard!")}>Dashboard</DropdownItem>)}>Save</Button>
               </ModalFooter>
             </Modal>
           </SidebarItem>
