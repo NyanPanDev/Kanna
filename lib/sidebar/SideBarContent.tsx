@@ -6,6 +6,8 @@ import './SideBar.css';
 import { JSX, ReactElement, ReactNode, useState } from "react";
 
 let itemArray : any[] = [];
+let urlHTML : any = "";
+let urlValue : string = "";
 const SideBarContent = () => {
 
 
@@ -17,6 +19,12 @@ const SideBarContent = () => {
   function addToDropdown (Item) {
     itemArray.push(Item)
   };
+
+  function getUrl () {
+    urlHTML = document.getElementById("url")
+    urlValue = urlHTML.value
+    return <DropdownItem onClick={() => alert("Dashboard!")}>{urlValue}</DropdownItem>
+  }
 
   const [openModal, setOpenModal] = useState(false);
     return (
@@ -35,7 +43,7 @@ const SideBarContent = () => {
               <ModalBody>
                 <div className="space-y-6">
                   <div className="m2-block">
-                    <TextInput id="url" type="url" required />
+                    <TextInput id="url" type="text" placeholder="https://safebooru.org" required />
                   </div>
                   <div className="m2-block">
                     <Button className="button" onClick={() => document.querySelector('#url input[type="text"]')}>Verify Link</Button>
@@ -43,7 +51,7 @@ const SideBarContent = () => {
                 </div>
               </ModalBody>
               <ModalFooter>
-                <Button className="button" onClick={() => handleClickForm(<DropdownItem onClick={() => alert("Dashboard!")}>Dashboard</DropdownItem>)}>Save</Button>
+                <Button type="submit" onClick={() => handleClickForm(getUrl())}>Save</Button>
               </ModalFooter>
             </Modal>
           </SidebarItem>
