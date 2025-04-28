@@ -33,6 +33,7 @@ const SideBarContent = () => {
         <SidebarItemGroup>
           <SidebarItem>
             <Dropdown id="websites-list" label="Servers">
+            <DropdownItem onClick={() => alert("Dashboard!")}>Default (Safebooru)</DropdownItem>
             {itemArray}
             </Dropdown>
           </SidebarItem>
