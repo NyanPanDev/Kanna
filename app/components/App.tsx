@@ -1,9 +1,7 @@
-import WelcomeKit from '@/lib/welcome/WelcomeKit'
 import SideBar from '@/lib/sidebar/SideBar'
 import '../styles/app.css'
-import { Button } from 'flowbite-react'
+import ContentWindow from '@/lib/contentWindow/ContentWindow'
 
 export default function App() {
-  //return <WelcomeKit />
-  return <SideBar />
+  return [<SideBar />, <ContentWindow />]
 }

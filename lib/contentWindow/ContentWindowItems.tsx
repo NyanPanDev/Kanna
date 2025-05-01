@@ -1,19 +1,48 @@
+"use client";
+
 import React from "react";
-const Booru = require('@himeka/booru')
-const { BooruError, sites } = require('@himeka/booru')
+import { Button, Pagination } from "flowbite-react";
+import { useState } from "react";
+import './ContentWindow.css'
+import { BooruService } from "../booru/BooruService";
 
+let testArray : any[] = [];
+let newArray : any[] = [];
 
-const argTags = process.argv.slice(3)
-const site = process.argv[2] || 'sb'
-const tags = process.argv[2] ? argTags : ['cat']
+function fetchBooruItemsOnce () {
+    testArray = testArray.concat(BooruService())
+    newArray = testArray
+}
 
-const searchUrl = Booru.forSite(site).getSearchUrl({ tags, limit: 1 })
+fetchBooruItemsOnce()
 
 const ContentWindowItems = () => {
-    return (
-        alert("Hello")
-    )
+    const [currentPage, setCurrentPage] = useState(1);
+    const [Data, setData] = useState(0)
+    const onPageChange = (page: number) => setCurrentPage(page);
 
+    function fetchBooruItems () {
+        testArray = testArray.concat(BooruService())
+        newArray = testArray
+        //newArray.push("test")
+        setData(Data + 1)
+    }
+
+    
+
+    return (
+        <div className="viewArea">
+            <div className="pictureArea">
+                <Button size="xl" onClick={() => fetchBooruItems()}>EXTRA</Button>
+                <div className="loadPictures">
+                    {newArray}
+                </div>
+            </div>
+            <div className="flex overflow-x-auto sm:justify-center pagination">
+                <Pagination currentPage={currentPage} totalPages={100} onPageChange={onPageChange} showIcons />
+            </div>
+        </div>
+      );
 }
 
 export default ContentWindowItems

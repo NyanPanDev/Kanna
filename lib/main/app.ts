@@ -14,10 +14,11 @@ export function createAppWindow(): void {
     titleBarStyle: 'hiddenInset',
     title: 'Kanna',
     maximizable: true,
-    resizable: true,
+    resizable: false,
     webPreferences: {
       preload: join(__dirname, '../preload/preload.js'),
       sandbox: false,
+      webSecurity: false,
     },
   })
 
