@@ -14,6 +14,12 @@ function fetchBooruItemsOnce () {
     newArray = testArray
 }
 
+function emptyArray () {
+    newArray.length = 0
+}
+
+
+
 fetchBooruItemsOnce()
 
 const ContentWindowItems = () => {
@@ -24,11 +30,14 @@ const ContentWindowItems = () => {
     function fetchBooruItems () {
         testArray = testArray.concat(BooruService())
         newArray = testArray
-        //newArray.push("test")
         setData(Data + 1)
     }
 
-    
+    function changePagination () {
+        
+        fetchBooruItems()
+    }
+
 
     return (
         <div className="viewArea">
@@ -39,7 +48,7 @@ const ContentWindowItems = () => {
                 </div>
             </div>
             <div className="flex overflow-x-auto sm:justify-center pagination">
-                <Pagination currentPage={currentPage} totalPages={100} onPageChange={onPageChange} showIcons />
+                <Pagination currentPage={currentPage} totalPages={20} onPageChange={onPageChange} onMouseDown={() => changePagination() } showIcons />
             </div>
         </div>
       );

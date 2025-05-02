@@ -13,6 +13,9 @@ const api = {
   removeAllListeners: (channel: string) => {
     ipcRenderer.removeAllListeners(channel)
   },
+  downloadImage: (url: string) => {
+    ipcRenderer.send('download-image', url);
+  },
 }
 
 export default api
