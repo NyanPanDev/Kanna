@@ -7,8 +7,11 @@ import { BooruService, fetchCurrentBooru } from "../booru/BooruService";
 
 let testArray : any[] = [];
 let newArray : any[] = [];
+let hasFetchedOnce = false;
 
 function fetchBooruItemsOnce (setData: React.Dispatch<React.SetStateAction<any[]>>) {
+    if (hasFetchedOnce) return;
+    hasFetchedOnce = true;
     testArray = testArray.concat(BooruService('megumin', 'safebooru'))
     newArray = testArray
     setData([...newArray])
@@ -39,8 +42,6 @@ export function fetchBooruItemsOnChange (booruName: string) {
 
 
 const ContentWindowItems : React.FC = () => {
-    // const [Data, setData] = useState(0)
-
     const [data, setData] = useState<any[]>([]);
 
     useEffect(() => {

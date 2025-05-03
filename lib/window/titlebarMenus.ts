@@ -148,7 +148,7 @@ export const menuItems: TitlebarMenu[] = [
     name: 'Credits',
     items: [
       {
-        name: 'Leave Complaints Here (I wont read them)',
+        name: 'Leave Complaints Here',
         action: 'web-open-url',
         actionParams: ['https://github.com/NyanPanDev/Kanna/issues'],
       },

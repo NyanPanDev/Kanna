@@ -1,6 +1,5 @@
 import { search } from 'kaori';
 
-
 let itemArray : any[] = [];
 let images : any[] = [];
 let currentBooru: any = ""
