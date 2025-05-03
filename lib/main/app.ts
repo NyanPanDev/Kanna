@@ -20,6 +20,8 @@ export function createAppWindow(): void {
       preload: join(__dirname, '../preload/preload.js'),
       sandbox: false,
       webSecurity: false,
+      nodeIntegration: true,
+      contextIsolation: false,
     },
   })
 

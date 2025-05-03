@@ -6,18 +6,20 @@ import './SideBar.css';
 import { useState } from "react";
 import { fetchBooruItemsOnChange } from "../contentWindow/ContentWindowItems";
 
-let itemArray : any[] = [];
-let urlHTML : any = "";
-let urlValue : string = "";
+const { shell } = window.require('electron');
+
 const SideBarContent = () => {
 
-  function handleClickForm (Item) {
-    addToDropdown(Item)
+  const [itemArray, setItemArray] = useState<string[]>([]);
+  const [urlValue, setUrlValue] = useState<string>("");
+
+  function handleClickForm () {
+    addToDropdown(urlValue)
     setOpenModal(false)
   };
 
-  function addToDropdown (Item) {
-    itemArray.push(Item)
+  function addToDropdown (item: string) {
+    setItemArray((prevArray) => [...prevArray, item]);
   };
 
   function setLabel (urlValueTest) {
@@ -25,15 +27,28 @@ const SideBarContent = () => {
     document.getElementsByName("dropDownRoot")[0].innerHTML = urlValueTest+svgString
   };
 
-  function getUrl () {
-    urlHTML = document.getElementById("url")
-    urlValue = urlHTML.value
-    return <DropdownItem className="dropDownItem" onClick={() => fetchBooru(urlValue, urlValue)}>{urlValue}</DropdownItem>
-  };
-
   function fetchBooru (urlValueTest, domainName) {
     setLabel(urlValueTest)
     fetchBooruItemsOnChange(domainName)
+  }
+
+  function verifyWebsite() {
+    if (urlValue.trim() !== "") {
+      shell.openExternal(urlValue); // Open the URL in a new tab
+    } else {
+      alert("Please enter a valid URL."); // Alert the user if the input is empty
+    }
+  }
+
+  function ensureAlwaysHTTPS (e) {
+    const inputValue = e.target.value;
+
+    // Ensure the value always starts with "https://"
+    if (!inputValue.startsWith("https://")) {
+      setUrlValue("https://");
+    } else {
+      setUrlValue(inputValue);
+    }
   }
 
   const [openModal, setOpenModal] = useState(false);
@@ -52,7 +67,15 @@ const SideBarContent = () => {
             <DropdownItem onClick={() => fetchBooru("rule34.xxx", 'rule34')}>rule34.xxx</DropdownItem>
             <DropdownItem onClick={() => fetchBooru("tbib.org", 'tbib')}>tbib.org</DropdownItem>
             <DropdownItem onClick={() => fetchBooru("xbooru.com", 'xbooru')}>xbooru.com</DropdownItem>
-            {itemArray}
+            {itemArray.map((item, index) => (
+                <DropdownItem
+                  key={index}
+                  className="dropDownItem"
+                  onClick={() => fetchBooru(item, item)}
+                >
+                  {item}
+                </DropdownItem>
+              ))}
             </Dropdown>
           </SidebarItem>
           <SidebarItem>
@@ -62,15 +85,15 @@ const SideBarContent = () => {
               <ModalBody>
                 <div className="space-y-6">
                   <div className="m2-block">
-                    <TextInput id="url" type="text" placeholder="https://safebooru.org" required />
+                    <TextInput id="url" type="text" placeholder="https://safebooru.org" required value={urlValue} onChange={(e) => ensureAlwaysHTTPS(e)} />
                   </div>
                   <div className="m2-block">
-                    <Button className="button" id="verifyButton" onClick={() => document.querySelector('#url input[type="text"]')}>Verify Link</Button>
+                    <Button className="button" id="verifyButton" onClick={() => verifyWebsite()}>Verify Link</Button>
                   </div>
                 </div>
               </ModalBody>
               <ModalFooter>
-                <Button type="submit" onClick={() => handleClickForm(getUrl())}>Save</Button>
+                <Button type="submit" onClick={handleClickForm}>Save</Button>
               </ModalFooter>
             </Modal>
           </SidebarItem>
