@@ -30,6 +30,8 @@ npm run build:linux
 - Add new domains using the '+' button.
 - Search for images using tags (multiple tags separated with a '+', e.g "hololive + megumin")
 
+![KANNA_EXAMPLE](kanna_example.PNG)
+
 # Limitations
 
 The booru extension used in Kanna, [kaori](https://github.com/iCrawl/kaori), supports a small number of boorus. Writing an API to accept new boorus is too time consuming, so most boorus are not supported.
