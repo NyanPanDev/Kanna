@@ -1,7 +1,5 @@
 # Kanna
 
-Ravioli, ravioli...
-
 Simple Booru viewer and downloader.
 
 ![KANNA](README_icon.jpg)
