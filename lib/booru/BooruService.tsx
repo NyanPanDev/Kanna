@@ -3,18 +3,24 @@ import { search } from 'kaori';
 
 let itemArray : any[] = [];
 let images : any[] = [];
-
-// function decideTag() {
-    
-// }
+let currentBooru: any = ""
 
 function addDownloader(imageFull) {
     window.api.downloadImage(imageFull)
 }
 
-export async function BooruService() {
+export function fetchCurrentBooru () {
+    return currentBooru;
+}
+
+export async function BooruService(tag: string, site: string) {
     itemArray.length = 0
-    images = await search('safebooru', { tags: ['gawr_gura'], limit: 20, random: true });
+    currentBooru = site
+    try {
+        images = await search(site, { tags: [tag], limit: 200, random: false });
+    } catch (error) {
+        console.log("Response is empty: {}", error)
+    }
     images.map((image) => {
         console.log(image.fileURL);
         console.log(image.previewURL);

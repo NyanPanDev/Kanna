@@ -4,12 +4,12 @@ import { Button, Dropdown, DropdownItem, DropdownProps, Label, Modal, ModalBody,
 import { FiPlusCircle } from "react-icons/fi";
 import './SideBar.css';
 import { JSX, ReactElement, ReactNode, useState } from "react";
+import { fetchBooruItemsOnChange } from "../contentWindow/ContentWindowItems";
 
 let itemArray : any[] = [];
 let urlHTML : any = "";
 let urlValue : string = "";
 const SideBarContent = () => {
-
 
   function handleClickForm (Item) {
     addToDropdown(Item)
@@ -28,11 +28,12 @@ const SideBarContent = () => {
   function getUrl () {
     urlHTML = document.getElementById("url")
     urlValue = urlHTML.value
-    return <DropdownItem className="dropDownItem" onClick={() => fetchBooru(urlValue)}>{urlValue}</DropdownItem>
+    return <DropdownItem className="dropDownItem" onClick={() => fetchBooru(urlValue, urlValue)}>{urlValue}</DropdownItem>
   };
 
-  function fetchBooru (urlValueTest) {
+  function fetchBooru (urlValueTest, domainName) {
     setLabel(urlValueTest)
+    fetchBooruItemsOnChange(domainName)
   }
 
   const [openModal, setOpenModal] = useState(false);
@@ -41,8 +42,17 @@ const SideBarContent = () => {
       <SidebarItems>
         <SidebarItemGroup>
           <SidebarItem>
-            <Dropdown id="websites-list" name="dropDownRoot" label="Default (Safebooru)">
-            <DropdownItem onClick={() => fetchBooru("Default (Safebooru)")}>Default (Safebooru)</DropdownItem>
+            <Dropdown id="websites-list" name="dropDownRoot" label="Default">
+            <DropdownItem onClick={() => fetchBooru("Default", 'safebooru')}>Default</DropdownItem>
+            <DropdownItem onClick={() => fetchBooru("Konachan.com", 'konachan')}>Konachan.com</DropdownItem>
+            <DropdownItem onClick={() => fetchBooru("Konachan.net", 'konachannet')}>Konachan.net</DropdownItem>
+            <DropdownItem onClick={() => fetchBooru("danbooru.donmai.us", 'danbooru')}>danbooru.donmai.us</DropdownItem>
+            <DropdownItem onClick={() => fetchBooru("yande.re", 'yandere')}>yande.re</DropdownItem>
+            <DropdownItem onClick={() => fetchBooru("lolibooru.moe", 'lolibooru')}>lolibooru.moe</DropdownItem>
+            <DropdownItem onClick={() => fetchBooru("gelbooru.com", 'gelbooru')}>gelbooru.com</DropdownItem>
+            <DropdownItem onClick={() => fetchBooru("rule34.xxx", 'rule34')}>rule34.xxx</DropdownItem>
+            <DropdownItem onClick={() => fetchBooru("tbib.org", 'tbib')}>tbib.org</DropdownItem>
+            <DropdownItem onClick={() => fetchBooru("xbooru.com", 'xbooru')}>xbooru.com</DropdownItem>
             {itemArray}
             </Dropdown>
           </SidebarItem>
@@ -56,7 +66,7 @@ const SideBarContent = () => {
                     <TextInput id="url" type="text" placeholder="https://safebooru.org" required />
                   </div>
                   <div className="m2-block">
-                    <Button className="button" onClick={() => document.querySelector('#url input[type="text"]')}>Verify Link</Button>
+                    <Button className="button" id="verifyButton" onClick={() => document.querySelector('#url input[type="text"]')}>Verify Link</Button>
                   </div>
                 </div>
               </ModalBody>

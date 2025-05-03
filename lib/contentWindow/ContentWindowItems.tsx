@@ -1,54 +1,78 @@
 "use client";
 
-import React from "react";
-import { Button, Pagination } from "flowbite-react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import './ContentWindow.css'
-import { BooruService } from "../booru/BooruService";
+import { BooruService, fetchCurrentBooru } from "../booru/BooruService";
 
 let testArray : any[] = [];
 let newArray : any[] = [];
 
-function fetchBooruItemsOnce () {
-    testArray = testArray.concat(BooruService())
+function fetchBooruItemsOnce (setData: React.Dispatch<React.SetStateAction<any[]>>) {
+    testArray = testArray.concat(BooruService('megumin', 'safebooru'))
     newArray = testArray
+    setData([...newArray])
 }
 
-function emptyArray () {
-    newArray.length = 0
-}
-
-
-
-fetchBooruItemsOnce()
-
-const ContentWindowItems = () => {
-    const [currentPage, setCurrentPage] = useState(1);
-    const [Data, setData] = useState(0)
-    const onPageChange = (page: number) => setCurrentPage(page);
-
-    function fetchBooruItems () {
-        testArray = testArray.concat(BooruService())
-        newArray = testArray
-        setData(Data + 1)
+export function fetchBooruItemsOnChange (booruName: string) {
+    const imageContainer = document.querySelector(".loadPictures");
+    if (imageContainer) {
+        imageContainer.innerHTML = ""; // Removes all images inside the div
+        console.log("All images deleted.");
     }
+    testArray = testArray.concat(BooruService('*', booruName))
+    newArray = testArray
+    const textInput = document.getElementById("textInputBooru") as HTMLInputElement | null;
+    if (textInput) {
 
-    function changePagination () {
-        
-        fetchBooruItems()
+        // Create and dispatch a KeyboardEvent for the "Enter" key
+        const enterEvent = new KeyboardEvent("keydown", {
+            key: "Enter",
+            bubbles: true, // Ensure the event bubbles up
+            cancelable: false,
+        });
+
+        textInput.dispatchEvent(enterEvent); // Dispatch the event
+        console.log(`Triggered "Enter" event on textInputBooru with value: ${booruName}`);
+    }
+}
+
+
+const ContentWindowItems : React.FC = () => {
+    // const [Data, setData] = useState(0)
+
+    const [data, setData] = useState<any[]>([]);
+
+    useEffect(() => {
+        fetchBooruItemsOnce(setData);
+    }, []);
+
+
+    function handleKeyPress (event: React.KeyboardEvent<HTMLInputElement>) {
+        if (event.key === "Enter") {
+            let textInputValue : any = ""
+            textInputValue = document.getElementById("textInputBooru")
+            let textInputVal : string = ""
+            textInputVal = textInputValue.value
+            const imageContainer = document.querySelector(".loadPictures");
+            if (imageContainer) {
+                imageContainer.innerHTML = ""; // Removes all images inside the div
+                console.log("All images deleted.");
+              }
+            testArray = testArray.concat(BooruService(textInputVal, fetchCurrentBooru()))
+            newArray = testArray
+            setData([...newArray])
+        }
     }
 
 
     return (
         <div className="viewArea">
+            <input className="textInputBooru" id="textInputBooru" type="search" placeholder="Input tags here..." onKeyDown={handleKeyPress}></input>
             <div className="pictureArea">
-                <Button size="xl" onClick={() => fetchBooruItems()}>EXTRA</Button>
                 <div className="loadPictures">
-                    {newArray}
+                    {data}
                 </div>
-            </div>
-            <div className="flex overflow-x-auto sm:justify-center pagination">
-                <Pagination currentPage={currentPage} totalPages={20} onPageChange={onPageChange} onMouseDown={() => changePagination() } showIcons />
             </div>
         </div>
       );

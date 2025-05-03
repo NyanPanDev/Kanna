@@ -1,13 +1,35 @@
-.pagination {
-    position: absolute;
-    left: 400px;
-    bottom: 5px;
-}
-
 .pictureArea {
     position: absolute;
     left: 300px;
-    top: 5px;
+    top: 80px;
+}
+
+.textInputBooru {
+    position: absolute;
+    left: 50%;
+    top: 30px;
+    border: 1px solid #555;
+    border-radius: 8px;
+    padding: 10px 15px;
+    width: 250px;
+    font-size: 16px;
+    outline: none;
+    background-color: #1c1c1c;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.textInputBooru:focus {
+    border-color: #fff;
+    box-shadow: 0 0 8px #fff;
+}
+
+.textInputBooru::placeholder {
+    color: #888;
+}
+
+.textInputBooru:hover {
+    border-color: #777;
 }
 
 .loadPictures {
@@ -20,8 +42,7 @@
     box-sizing: border-box;
     grid-template-columns: 1fr 3fr;
     padding: 5px;
-    padding: 16px;
-    height: 900px;
+    height: 1000px;
     width: 900px;
 }
 

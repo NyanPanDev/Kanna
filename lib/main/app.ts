@@ -57,7 +57,7 @@ export function createAppWindow(): void {
       if (error instanceof CancelError) {
         console.log("User has cancelled the download")
       } else {
-        console.error("Error during download")
+        console.error("Error during download: {}", error)
       }
     }
   });
