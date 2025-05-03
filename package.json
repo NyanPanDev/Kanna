@@ -1,7 +1,7 @@
 {
   "name": "kanna",
   "version": "1.0.0",
-  "description": "A based tool for based people. Test",
+  "description": "Booru Viewer and Downloader",
   "main": "./out/main/main.js",
   "license": "MIT",
   "repository": {
