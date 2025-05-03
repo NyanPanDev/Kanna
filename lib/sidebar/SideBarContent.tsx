@@ -1,9 +1,9 @@
 "use client";
 
-import { Button, Dropdown, DropdownItem, DropdownProps, Label, Modal, ModalBody, ModalFooter, ModalHeader, Sidebar, SidebarItem, SidebarItemGroup, SidebarItems, TextInput } from "flowbite-react";
+import { Button, Dropdown, DropdownItem, Modal, ModalBody, ModalFooter, ModalHeader, Sidebar, SidebarItem, SidebarItemGroup, SidebarItems, TextInput } from "flowbite-react";
 import { FiPlusCircle } from "react-icons/fi";
 import './SideBar.css';
-import { JSX, ReactElement, ReactNode, useState } from "react";
+import { useState } from "react";
 import { fetchBooruItemsOnChange } from "../contentWindow/ContentWindowItems";
 
 let itemArray : any[] = [];
@@ -48,7 +48,6 @@ const SideBarContent = () => {
             <DropdownItem onClick={() => fetchBooru("Konachan.net", 'konachannet')}>Konachan.net</DropdownItem>
             <DropdownItem onClick={() => fetchBooru("danbooru.donmai.us", 'danbooru')}>danbooru.donmai.us</DropdownItem>
             <DropdownItem onClick={() => fetchBooru("yande.re", 'yandere')}>yande.re</DropdownItem>
-            <DropdownItem onClick={() => fetchBooru("lolibooru.moe", 'lolibooru')}>lolibooru.moe</DropdownItem>
             <DropdownItem onClick={() => fetchBooru("gelbooru.com", 'gelbooru')}>gelbooru.com</DropdownItem>
             <DropdownItem onClick={() => fetchBooru("rule34.xxx", 'rule34')}>rule34.xxx</DropdownItem>
             <DropdownItem onClick={() => fetchBooru("tbib.org", 'tbib')}>tbib.org</DropdownItem>
