@@ -29,6 +29,7 @@ npm run build:linux
 - Use dropdown to apply pre-selected Boorus.
 - Add new domains using the '+' button.
 - Search for images using tags (multiple tags separated with a '+', e.g "hololive + megumin")
+- Click on any image to download to desired location.
 
 ![KANNA_EXAMPLE](kanna_example.PNG)
 
